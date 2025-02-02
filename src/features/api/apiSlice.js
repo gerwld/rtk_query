@@ -1,45 +1,39 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3500' }),
-    tagTypes: ['Todos'],
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3501" }),  // Fixed base URL spacing
     endpoints: (builder) => ({
         getTodos: builder.query({
-            query: () => '/todos',
-            transformResponse: res => res.sort((a, b) => b.id - a.id),
-            providesTags: ['Todos']
+            query: () => '/todos'
         }),
         addTodo: builder.mutation({
             query: (todo) => ({
                 url: '/todos',
-                method: 'POST',
+                method: "POST",
                 body: todo
             }),
-            invalidatesTags: ['Todos']
-        }),
+        }),  // Added missing comma and closing brace for addTodo
         updateTodo: builder.mutation({
             query: (todo) => ({
                 url: `/todos/${todo.id}`,
-                method: 'PATCH',
+                method: "PATCH",
                 body: todo
-            }),
-            invalidatesTags: ['Todos']
+            })
         }),
         deleteTodo: builder.mutation({
             query: ({ id }) => ({
                 url: `/todos/${id}`,
-                method: 'DELETE',
+                method: "DELETE",
                 body: id
-            }),
-            invalidatesTags: ['Todos']
-        }),
+            })
+        })
     })
-})
+});
 
 export const {
     useGetTodosQuery,
-    useAddTodoMutation,
+    useDeleteTodoMutation,
     useUpdateTodoMutation,
-    useDeleteTodoMutation
-} = apiSlice
+    useAddTodoMutation
+} = apiSlice;

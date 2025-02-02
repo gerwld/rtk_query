@@ -10,10 +10,7 @@ import { faTrash, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 const TodoList = () => {
-   const [newTodo, setNewTodo] = useState("");
-
-   console.log(useGetTodosQuery);
-   
+   const [newTodo, setNewTodo] = useState("");   
 
    const {
       data: todos,

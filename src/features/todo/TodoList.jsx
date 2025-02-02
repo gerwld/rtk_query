@@ -26,7 +26,7 @@ const TodoList = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      addTodo({ userId: 1, title: newTodo, completed: false });
+      addTodo({ userId: 1, title: newTodo, completed: false, timestamp: + new Date() });
       setNewTodo("");
    };
 
